@@ -1,8 +1,14 @@
+export type AuthStackParamList = {
+  LoginScreen: undefined;
+};
+
 export type Tabs = {
   HomeScreen: undefined;
   CartScreen: undefined;
   ProfileScreen: undefined;
 };
+
 export type RootStackParamList = {
-  tabs: Tabs;
+  Auth: undefined;
+  App: undefined;
 };
