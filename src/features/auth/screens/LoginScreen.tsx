@@ -1,15 +1,10 @@
-import { TouchableWithoutFeedback, Keyboard, Pressable, StyleSheet } from 'react-native';
-import Animated, {
-  KeyboardState,
-  useAnimatedKeyboard,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
-import { Image } from 'expo-image';
-import React from 'react';
 import ThemedView from '@/components/ui/ThemedView/ThemedView';
+import { Image } from 'expo-image';
+import { Keyboard, Pressable, StyleSheet } from 'react-native';
+import Animated, { useAnimatedKeyboard, useAnimatedStyle } from 'react-native-reanimated';
 
-import { AuthContainer } from '@/features/auth';
 import { BLURHASH } from '@/constants/brulhash';
+import { AuthContainer } from '@/features/auth';
 
 export const LoginScreen = () => {
   const keyboard = useAnimatedKeyboard();
@@ -21,7 +16,7 @@ export const LoginScreen = () => {
   return (
     <ThemedView
       edges={['top', 'left', 'right']}
-      className="bg-secondary/70 flex-1 items-center justify-end ">
+      className="flex-1 items-center justify-end bg-secondary/70 ">
       <Image
         source={{
           uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6quLP6ko2l5S875qeuP5G-obJo2ad3jtY-g&s',

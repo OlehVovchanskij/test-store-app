@@ -1,9 +1,10 @@
-import './global.css';
-import { useFonts } from 'expo-font';
 import { Navigation } from '@/navigation';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import './global.css';
 SplashScreen.preventAutoHideAsync();
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -20,9 +21,21 @@ export default function App() {
   }, [fontsLoaded]);
 
   if (!fontsLoaded) return null;
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 1,
+        refetchOnWindowFocus: false,
+        staleTime: 1000 * 60 * 5,
+        refetchOnReconnect: true,
+      },
+    },
+  });
   return (
-    <SafeAreaProvider>
-      <Navigation />
-    </SafeAreaProvider>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        <Navigation />
+      </SafeAreaProvider>
+    </QueryClientProvider>
   );
 }
