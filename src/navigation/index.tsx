@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type { RootStackParamList } from './types';
 
 import { useAuthStore } from '@/features/auth';
+import { useCartStore } from '@/features/cart';
 import { ProductDetailsScreen } from '@/features/shop/screens/ProductDetailsScreen';
 import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
@@ -14,7 +15,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function Navigation() {
   const { isAuthenticated, fetchMe, isLoading } = useAuthStore();
+  const { setCartItems } = useCartStore();
   useEffect(() => {
+    setCartItems();
     fetchMe();
   }, []);
   if (isLoading) {

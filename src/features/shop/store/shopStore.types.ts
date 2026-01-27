@@ -3,7 +3,10 @@ import { Product } from '../types/product.types';
 
 export type ShopState = {
   isLoading: boolean;
-  products: Product[];
+  cart: {
+    product: Product;
+    quantity: number;
+  }[];
   categories: Category[];
   categoryFilter: number | null;
   error: string | null;
@@ -11,8 +14,9 @@ export type ShopState = {
 export type ShopAction = {
   setCategoryFilter: (categoryId: number | null) => void;
   setCategories: (categories: Category[]) => void;
-  setProducts: (products: Product[]) => void;
+
   setLoading: (isLoading: boolean) => void;
+
   setError: (error: string | null) => void;
 };
 export type ShopStore = ShopState & ShopAction;

@@ -3,6 +3,7 @@ import Button from '@/components/ui/Button/Button';
 import ThemedView from '@/components/ui/ThemedView/ThemedView';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { BLURHASH } from '@/constants/brulhash';
+import { useCartStore } from '@/features/cart';
 import { RootStackParamList } from '@/navigation/types';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Image } from 'expo-image';
@@ -10,6 +11,7 @@ import { ScrollView, View } from 'react-native';
 
 type RouteProps = RouteProp<RootStackParamList, 'ProductDetails'>;
 export const ProductDetailsScreen = () => {
+  const { addItem } = useCartStore();
   const route = useRoute<RouteProps>();
   const { product } = route.params;
   return (
@@ -42,7 +44,7 @@ export const ProductDetailsScreen = () => {
       </ScrollView>
       <Button
         className="mb-4"
-        onPress={() => {}}
+        onPress={() => addItem(product)}
         text="Add to cart"
         textStyle="font-signika-bold"
       />
