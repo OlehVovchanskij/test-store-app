@@ -1,3 +1,5 @@
+import { Product } from '@/features/shop';
+
 export type AuthStackParamList = {
   LoginScreen: undefined;
 };
@@ -11,4 +13,5 @@ export type Tabs = {
 export type RootStackParamList = {
   Auth: undefined;
   App: undefined;
+  ProductDetails: { product: Product };
 };

@@ -1,3 +1,4 @@
 export const SECURESTORAGE_KEYS = {
   ACCESS_TOKEN: 'ACCESS_TOKEN',
+  CART: 'CART',
 };

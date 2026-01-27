@@ -1,11 +1,9 @@
 import axios from 'axios';
-import { LoginCredentials } from '../types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
+import { LoginCredentials } from '../types';
 
-import { useAuthStore } from '../store/AuthStore';
 import { SECURESTORAGE_KEYS } from '@/constants/storage';
-import { set } from 'react-hook-form';
+import { useAuthStore } from '../store/AuthStore';
 export const login = async (credentials: LoginCredentials) => {
   const { login, setError, setLoading } = useAuthStore.getState();
   try {
@@ -34,7 +32,7 @@ export const fetchMe = async () => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    console.log('Fetched user data:', res.data);
+
     return res.data;
   } catch (error) {
     throw error;

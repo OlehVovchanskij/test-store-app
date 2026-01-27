@@ -1,8 +1,10 @@
 import type { LucideIcon } from 'lucide-react-native';
 import { Home, ShoppingCart, User } from 'lucide-react-native';
 import { Tabs } from '../types';
-import HomeScreen from '@/screens/HomeScreen';
-import { CartScreen } from '@/screens/CartScreen';
+
+import { CartScreen } from '@/features/cart';
+import { HomeScreen } from '@/features/shop';
+
 interface BottomTabBarItem {
   label: string;
   icon: LucideIcon;
