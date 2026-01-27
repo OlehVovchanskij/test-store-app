@@ -1,5 +1,5 @@
-import { Text, TextProps } from 'react-native';
 import cn from 'clsx';
+import { Text, TextProps } from 'react-native';
 
 type Variant = 'h1' | 'h2' | 'h3' | 'body' | 'caption' | 'small' | 'error';
 
@@ -9,14 +9,14 @@ interface TypographyProps extends TextProps {
 
 export function Typography({ variant = 'body', className, ...props }: TypographyProps) {
   const styles = {
-    h1: 'text-3xl font-signika-bold text-text-primary',
-    h2: 'text-2xl font-signika-bold text-text-primary',
-    h3: 'text-xl font-signika-semibold text-text-primary',
-    body: 'text-base text-text-primary',
-    caption: 'text-sm text-text-secondary',
-    small: 'text-xs text-text-muted',
+    h1: 'text-3xl font-signika-bold text-secondary',
+    h2: 'text-2xl font-signika-bold text-secondary',
+    h3: 'text-xl font-signika-semibold text-primary',
+    body: 'text-base text-primary',
+    caption: 'text-sm font-signika-medium',
+    small: 'text-xs text-muted',
     error: 'text-danger font-signika-medium text-base',
   };
 
-  return <Text {...props} className={cn(styles[variant], className)} />;
+  return <Text {...props} className={cn(className, styles[variant])} />;
 }

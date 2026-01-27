@@ -1,10 +1,28 @@
 import { BLURHASH } from '@/constants/brulhash';
+import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { Image } from 'expo-image';
-import { Text, View } from 'react-native';
+import { Pressable, Text } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { Product } from '../../types/product.types';
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 export const ProductCard = ({ product }: { product: Product }) => {
+  const navigation = useAppNavigation();
+  const scale = useSharedValue(1);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
   return (
-    <View className="mb-5 w-[48%] rounded-2xl bg-white p-3">
+    <AnimatedPressable
+      onPressIn={() => {
+        scale.value = withSpring(0.85);
+      }}
+      onPressOut={() => {
+        scale.value = withSpring(1);
+      }}
+      style={animatedStyle}
+      onPress={() => navigation.navigate('ProductDetails', { product: product })}
+      className="mb-5 w-[48%] rounded-2xl bg-white p-3">
       <Image
         source={{ uri: product.images[0] }}
         placeholder={BLURHASH}
@@ -16,6 +34,6 @@ export const ProductCard = ({ product }: { product: Product }) => {
       <Text className="text-base font-semibold text-gray-900">{product.title}</Text>
 
       <Text className="mt-1 font-medium text-green-700">${product.price}</Text>
-    </View>
+    </AnimatedPressable>
   );
 };
