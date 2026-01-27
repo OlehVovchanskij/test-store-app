@@ -1,12 +1,17 @@
 import { Category } from '../types/category.types';
 import { Product } from '../types/product.types';
-import { storeApi } from './store.config';
+import { storeApi } from './shop.config';
 
-export const getProducts = async (offset: number, limit: number): Promise<Product[]> => {
+export const getProducts = async (
+  offset: number,
+  limit: number,
+  categoryFilter: number | null
+): Promise<Product[]> => {
   const { data } = await storeApi.get<Product[]>('/products', {
     params: {
       offset,
       limit,
+      categoryId: categoryFilter,
     },
   });
 

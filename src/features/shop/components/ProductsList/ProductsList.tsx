@@ -1,5 +1,6 @@
 import { ActivityIndicator, FlatList, View } from 'react-native';
 
+import { Typography } from '@/components/ui/Typography/Typography';
 import { useProducts } from '../../api/tanstack/product.query';
 import { ProductCard } from '../ProductCard/ProductCard';
 
@@ -21,12 +22,21 @@ export const ProductsList = () => {
       </View>
     );
   }
+  console.log('Products:', products.length);
+  if (products.length === 0) {
+    return (
+      <View className="flex-1 items-center justify-center ">
+        <Typography variant="h3" className="text-secondary">
+          No products found.
+        </Typography>
+      </View>
+    );
+  }
   return (
     <FlatList
       data={products}
       showsVerticalScrollIndicator={false}
       keyExtractor={(item) => item.id.toString()}
-      contentContainerStyle={{ padding: 16 }}
       columnWrapperStyle={{
         justifyContent: 'space-between',
       }}

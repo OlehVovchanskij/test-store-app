@@ -11,14 +11,20 @@ export const HomeScreen = () => {
           Store
         </Typography>
       </View>
-      <Typography variant="h2" className="mt-6 px-4">
-        Categories
-      </Typography>
-      <CategoriesList />
-      <Typography variant="h2" className="mt-6 px-4">
-        Products
-      </Typography>
-      <ProductsList />
+      <View className="flex-1">
+        <View className="w-full">
+          <Typography variant="h2" className="mt-6 px-4">
+            Categories
+          </Typography>
+          <CategoriesList />
+        </View>
+        <View className="flex-1 px-4">
+          <Typography variant="h2" className="mt-6">
+            Products
+          </Typography>
+          <ProductsList />
+        </View>
+      </View>
     </ThemedView>
   );
 };
