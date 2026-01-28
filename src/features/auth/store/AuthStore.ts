@@ -1,50 +1,64 @@
+import { SECURESTORAGE_KEYS } from '@/constants/storage';
+import * as SecureStore from 'expo-secure-store';
 import { create } from 'zustand';
+import { fetchMeRequest, loginRequest } from '../api/auth.api';
+import { LoginCredentials } from '../types';
 import { AuthStore } from './AuthStore.types';
-import { fetchMe } from '../api/auth.api';
 export const useAuthStore = create<AuthStore>((set) => ({
   isAuthenticated: false,
   accessToken: null,
   user: null,
   isLoading: false,
   error: null,
-  login: (accessToken, user) =>
-    set(() => ({
-      isAuthenticated: true,
-      accessToken,
-      user,
-      error: null,
-    })),
-  logout: () =>
-    set(() => ({
-      isAuthenticated: false,
-      accessToken: null,
-      user: null,
-      error: null,
-    })),
-  setLoading: (isLoading) =>
-    set(() => ({
-      isLoading,
-    })),
-  fetchMe: async () => {
+
+  login: async (credentials: LoginCredentials) => {
     set({ isLoading: true });
+
     try {
-      const res = await fetchMe();
+      const data = await loginRequest(credentials);
 
       set({
-        user: res,
-        isLoading: false,
+        accessToken: data.accessToken,
+        user: data,
         isAuthenticated: true,
+        error: null,
       });
-    } catch (e) {
+    } catch (e: any) {
       set({
-        user: null,
+        error: e.response?.data?.message ?? 'Login error',
       });
     } finally {
       set({ isLoading: false });
     }
   },
-  setError: (error) =>
-    set(() => ({
-      error,
-    })),
+
+  fetchMe: async () => {
+    set({ isLoading: true });
+
+    try {
+      const user = await fetchMeRequest();
+
+      if (!user) {
+        set({ isAuthenticated: false });
+        return;
+      }
+
+      set({
+        user,
+        isAuthenticated: true,
+      });
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  logout: async () => {
+    await SecureStore.deleteItemAsync(SECURESTORAGE_KEYS.ACCESS_TOKEN);
+
+    set({
+      isAuthenticated: false,
+      user: null,
+      accessToken: null,
+    });
+  },
 }));

@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type { RootStackParamList } from './types';
 
 import { useAuthStore } from '@/features/auth';
-import { useCartStore } from '@/features/cart';
+import { SubmitOrderModal, useCartStore } from '@/features/cart';
 import { ProductDetailsScreen } from '@/features/shop/screens/ProductDetailsScreen';
 import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
@@ -33,6 +33,15 @@ export function Navigation() {
         {isAuthenticated ? (
           <>
             <Stack.Screen name="App" component={AppTabs} />
+            <Stack.Screen
+              name="SubmitOrder"
+              component={SubmitOrderModal}
+              options={{
+                presentation: 'modal',
+                animation: 'slide_from_bottom',
+                gestureEnabled: true,
+              }}
+            />
             <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
           </>
         ) : (

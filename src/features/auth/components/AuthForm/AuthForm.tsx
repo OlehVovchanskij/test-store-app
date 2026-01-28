@@ -1,15 +1,15 @@
-import { View, Text, TextInput } from 'react-native';
-import React from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { loginSchema } from './AuthForm.validator';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Typography } from '@/components/ui/Typography/Typography';
-import { Input } from '@/components/ui/Input/Input';
 import Button from '@/components/ui/Button/Button';
-import { login } from '../../api/auth.api';
-import { LoginCredentials } from '../../types';
+import { Input } from '@/components/ui/Input/Input';
+import { Typography } from '@/components/ui/Typography/Typography';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Controller, useForm } from 'react-hook-form';
+import { View } from 'react-native';
+
 import { useAuthStore } from '../../store/AuthStore';
+import { LoginCredentials } from '../../types';
+import { loginSchema } from './AuthForm.validator';
 const AuthForm = () => {
+  const { login } = useAuthStore();
   const {
     control,
     handleSubmit,
@@ -28,14 +28,13 @@ const AuthForm = () => {
           {error}
         </Typography>
       )}
-      <Typography variant="body" className="text-secondary font-signika-medium mb-1">
-        username
-      </Typography>
+
       <Controller
         control={control}
         name="username"
         render={({ field: { onChange, value } }) => (
           <Input
+            label="Username"
             onChangeText={onChange}
             error={errors.username?.message}
             value={value}
@@ -44,15 +43,13 @@ const AuthForm = () => {
           />
         )}
       />
-      <Typography variant="body" className="text-secondary font-signika-medium mb-1 mt-4">
-        password
-      </Typography>
 
       <Controller
         control={control}
         name="password"
         render={({ field: { onChange, value } }) => (
           <Input
+            label="Password"
             secureTextEntry={true}
             onChangeText={onChange}
             value={value}
@@ -64,8 +61,8 @@ const AuthForm = () => {
       />
       <Button
         onPress={handleSubmit(onSubmit)}
-        textStyle="text-secondary font-signika-semibold "
-        className=" mb-10 mt-6"
+        textStyle="text-secondary font-signika-semibold"
+        className=" mb-10 mt-6 w-full"
         text="Login"
       />
     </View>
