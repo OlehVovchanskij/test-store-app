@@ -1,40 +1,26 @@
+import { SECURESTORAGE_KEYS } from '@/constants/storage';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 import { LoginCredentials } from '../types';
 
-import { SECURESTORAGE_KEYS } from '@/constants/storage';
-import { useAuthStore } from '../store/AuthStore';
-export const login = async (credentials: LoginCredentials) => {
-  const { login, setError, setLoading } = useAuthStore.getState();
-  try {
-    setLoading(true);
-    const res = await axios.post('https://dummyjson.com/auth/login', credentials);
+export const loginRequest = async (credentials: LoginCredentials) => {
+  const res = await axios.post('https://dummyjson.com/auth/login', credentials);
 
-    await SecureStore.setItemAsync(SECURESTORAGE_KEYS.ACCESS_TOKEN, res.data.accessToken);
+  await SecureStore.setItemAsync(SECURESTORAGE_KEYS.ACCESS_TOKEN, res.data.accessToken);
 
-    login(res.data.accessToken, res.data);
-  } catch (error: any) {
-    setError(error.response?.data.message);
-  } finally {
-    setLoading(false);
-  }
+  return res.data;
 };
-export const fetchMe = async () => {
+
+export const fetchMeRequest = async () => {
   const accessToken = await SecureStore.getItemAsync(SECURESTORAGE_KEYS.ACCESS_TOKEN);
 
-  if (!accessToken) {
-    return null;
-  }
+  if (!accessToken) return null;
 
-  try {
-    const res = await axios.get('https://dummyjson.com/auth/me', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+  const res = await axios.get('https://dummyjson.com/auth/me', {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 
-    return res.data;
-  } catch (error) {
-    throw error;
-  }
+  return res.data;
 };

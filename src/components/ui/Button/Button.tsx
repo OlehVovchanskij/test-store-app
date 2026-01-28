@@ -1,6 +1,6 @@
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import React, { FC } from 'react';
 import cn from 'clsx';
+import { FC } from 'react';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'danger' | 'ghost';
 
@@ -55,7 +55,7 @@ const Button: FC<ButtonProps> = ({
       disabled={disabled}
       activeOpacity={0.8}
       className={cn(
-        'w-full items-center justify-center rounded-xl',
+        ' items-center justify-center rounded-xl',
         variantStyles[variant],
         sizeStyles[size],
         disabled && 'opacity-50',

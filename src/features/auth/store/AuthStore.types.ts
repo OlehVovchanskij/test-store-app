@@ -1,4 +1,4 @@
-import { User } from '../types';
+import { LoginCredentials, User } from '../types';
 
 export interface AuthState {
   isAuthenticated: boolean;
@@ -8,10 +8,9 @@ export interface AuthState {
   error: string | null;
 }
 export interface AuthActions {
-  login: (accessToken: string, user: User) => void;
+  login: (credentials: LoginCredentials) => void;
   logout: () => void;
-  setLoading: (isLoading: boolean) => void;
-  setError: (error: string | null) => void;
+
   fetchMe: () => Promise<void>;
 }
 export type AuthStore = AuthState & AuthActions;

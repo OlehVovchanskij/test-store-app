@@ -1,5 +1,5 @@
 import { SECURESTORAGE_KEYS } from '@/constants/storage';
-import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { CartAction, CartState } from './cartStore.types';
 export const useCartStore = create<CartState & CartAction>((set, get) => ({
@@ -22,11 +22,12 @@ export const useCartStore = create<CartState & CartAction>((set, get) => ({
       return { items: updatedCart };
     });
     get().calculateTotal();
-    await SecureStore.setItemAsync(SECURESTORAGE_KEYS.CART, JSON.stringify(get().items));
+    await AsyncStorage.setItem(SECURESTORAGE_KEYS.CART, JSON.stringify(get().items));
   },
   setCartItems: async () => {
-    const cart = await SecureStore.getItemAsync(SECURESTORAGE_KEYS.CART);
+    const cart = await AsyncStorage.getItem(SECURESTORAGE_KEYS.CART);
     set(() => ({ items: cart ? JSON.parse(cart) : [] }));
+    get().calculateTotal();
   },
   removeItem: async (productId) => {
     set((state) => {
@@ -34,17 +35,18 @@ export const useCartStore = create<CartState & CartAction>((set, get) => ({
       return { items: updatedCart };
     });
     get().calculateTotal();
-    await SecureStore.setItemAsync(SECURESTORAGE_KEYS.CART, JSON.stringify(get().items));
+    await AsyncStorage.setItem(SECURESTORAGE_KEYS.CART, JSON.stringify(get().items));
   },
   clearCart: async () => {
     set(() => ({ items: [] }));
-    await SecureStore.deleteItemAsync(SECURESTORAGE_KEYS.CART);
+    await AsyncStorage.removeItem(SECURESTORAGE_KEYS.CART);
+    get().calculateTotal();
   },
   calculateTotal: () => {
     const total = get().items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
     set(() => ({ totalAmount: total }));
   },
-  setCount: async (productId, quantity) => {
+  setCount: (productId, quantity) => {
     set((state) => {
       const updatedCart = state.items.map((item) =>
         item.product.id === productId ? { ...item, quantity } : item
@@ -52,6 +54,6 @@ export const useCartStore = create<CartState & CartAction>((set, get) => ({
       return { items: updatedCart };
     });
     get().calculateTotal();
-    await SecureStore.setItemAsync(SECURESTORAGE_KEYS.CART, JSON.stringify(get().items));
+    AsyncStorage.setItem(SECURESTORAGE_KEYS.CART, JSON.stringify(get().items));
   },
 }));

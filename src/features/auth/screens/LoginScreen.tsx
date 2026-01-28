@@ -4,7 +4,7 @@ import { Keyboard, Pressable, StyleSheet } from 'react-native';
 import Animated, { useAnimatedKeyboard, useAnimatedStyle } from 'react-native-reanimated';
 
 import { BLURHASH } from '@/constants/brulhash';
-import { AuthContainer } from '@/features/auth';
+import { AuthContainer } from '../components/ui/AuthContainer/AuthContainer';
 
 export const LoginScreen = () => {
   const keyboard = useAnimatedKeyboard();

@@ -13,5 +13,6 @@ export type Tabs = {
 export type RootStackParamList = {
   Auth: undefined;
   App: undefined;
+  SubmitOrder: undefined;
   ProductDetails: { product: Product };
 };
