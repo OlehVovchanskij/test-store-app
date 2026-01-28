@@ -33,6 +33,7 @@ export const useCartStore = create<CartState & CartAction>((set, get) => ({
       const updatedCart = state.items.filter((item) => item.product.id !== productId);
       return { items: updatedCart };
     });
+    get().calculateTotal();
     await SecureStore.setItemAsync(SECURESTORAGE_KEYS.CART, JSON.stringify(get().items));
   },
   clearCart: async () => {
@@ -42,5 +43,15 @@ export const useCartStore = create<CartState & CartAction>((set, get) => ({
   calculateTotal: () => {
     const total = get().items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
     set(() => ({ totalAmount: total }));
+  },
+  setCount: async (productId, quantity) => {
+    set((state) => {
+      const updatedCart = state.items.map((item) =>
+        item.product.id === productId ? { ...item, quantity } : item
+      );
+      return { items: updatedCart };
+    });
+    get().calculateTotal();
+    await SecureStore.setItemAsync(SECURESTORAGE_KEYS.CART, JSON.stringify(get().items));
   },
 }));

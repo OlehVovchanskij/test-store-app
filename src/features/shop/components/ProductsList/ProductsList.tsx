@@ -22,7 +22,7 @@ export const ProductsList = () => {
       </View>
     );
   }
-  console.log('Products:', products.length);
+
   if (products.length === 0) {
     return (
       <View className="flex-1 items-center justify-center ">

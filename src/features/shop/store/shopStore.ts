@@ -8,7 +8,6 @@ export const useShopStore = create<ShopStore>((set, get) => ({
   error: null,
   setCategoryFilter: (categoryId) =>
     set(() => {
-      console.log(categoryId);
       return { categoryFilter: categoryId };
     }),
   setCategories: (categories) => set(() => ({ categories })),

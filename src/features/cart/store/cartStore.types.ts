@@ -14,4 +14,5 @@ export type CartAction = {
   clearCart: () => void;
   calculateTotal: () => void;
   setCartItems: () => void;
+  setCount: (productId: number, quantity: number) => void;
 };
