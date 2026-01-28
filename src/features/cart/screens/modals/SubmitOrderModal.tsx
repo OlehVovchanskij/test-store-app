@@ -1,8 +1,7 @@
-import GoBackButton from '@/components/GoBackButton/GoBackButton';
+import Header from '@/components/ui/Header/Header';
 import ThemedView from '@/components/ui/ThemedView/ThemedView';
 import { Typography } from '@/components/ui/Typography/Typography';
-import { colors } from '@/theme';
-import { Keyboard, Pressable, StyleSheet, View } from 'react-native';
+import { Keyboard, Pressable, StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FormCartList from '../../components/CartList/FormCartList';
 import SubmitOrderForm from '../../components/SubmitOrderForm/SubmitOrderForm';
@@ -21,11 +20,7 @@ export const SubmitOrderModal = () => {
         enableResetScrollToCoords={false}
         contentContainerStyle={{ paddingBottom: 80 }}
         showsVerticalScrollIndicator={false}>
-        <View className="mb-6 bg-secondary px-4 pb-6 pt-6">
-          <GoBackButton className="mb-2" textClassName="text-white" color={colors.background} />
-
-          <Typography className="text-2xl font-bold text-white">Submit Order</Typography>
-        </View>
+        <Header text="Submit Order" withBackButton />
 
         <FormCartList />
 
