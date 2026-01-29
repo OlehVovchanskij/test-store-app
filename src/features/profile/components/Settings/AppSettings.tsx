@@ -1,5 +1,7 @@
 import { Typography } from '@/components/ui/Typography/Typography';
 import { View } from 'react-native';
+
+import { BiometricToggle } from './BiometricToggle/BiometricToggle';
 import SwitchTheme from './SwitchTheme/SwitchTheme';
 
 export const AppSettings = () => {
@@ -9,6 +11,7 @@ export const AppSettings = () => {
         App Settings
       </Typography>
       <SwitchTheme />
+      <BiometricToggle />
     </View>
   );
 };
