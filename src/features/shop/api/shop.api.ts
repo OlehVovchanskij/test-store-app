@@ -5,13 +5,15 @@ import { storeApi } from './shop.config';
 export const getProducts = async (
   offset: number,
   limit: number,
-  categoryFilter: number | null
+  categoryFilter: number | null,
+  searchValue: string = ''
 ): Promise<Product[]> => {
   const { data } = await storeApi.get<Product[]>('/products', {
     params: {
       offset,
       limit,
       categoryId: categoryFilter,
+      title: searchValue,
     },
   });
 

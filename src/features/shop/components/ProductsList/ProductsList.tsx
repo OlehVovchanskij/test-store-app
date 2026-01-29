@@ -1,10 +1,12 @@
 import { ActivityIndicator, FlatList, View } from 'react-native';
 
 import { Typography } from '@/components/ui/Typography/Typography';
+import { useDebounce } from '@/hooks/useDebounce';
 import { useProducts } from '../../api/tanstack/product.query';
 import { ProductCard } from '../ProductCard/ProductCard';
 
-export const ProductsList = () => {
+export const ProductsList = ({ search }: { search: string }) => {
+  const debouncedValue = useDebounce(search, 500);
   const {
     data: products = [],
     fetchNextPage,
@@ -13,7 +15,7 @@ export const ProductsList = () => {
     isLoading,
     refetch,
     isRefetching,
-  } = useProducts();
+  } = useProducts(debouncedValue);
 
   if (isLoading) {
     return (

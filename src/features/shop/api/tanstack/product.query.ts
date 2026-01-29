@@ -5,23 +5,25 @@ import { getProducts } from '../shop.api';
 
 const LIMIT = 20;
 
-export const useProducts = () => {
+export const useProducts = (searchValue: string) => {
   const { categoryFilter } = useShopStore();
 
-  return useInfiniteQuery<Product[], Error, Product[], ['products', number | null], number>({
-    queryKey: ['products', categoryFilter],
+  return useInfiniteQuery<Product[], Error, Product[], ['products', number | null, string], number>(
+    {
+      queryKey: ['products', categoryFilter, searchValue],
 
-    queryFn: ({ pageParam = 0 }) => getProducts(pageParam, LIMIT, categoryFilter),
+      queryFn: ({ pageParam = 0 }) => getProducts(pageParam, LIMIT, categoryFilter, searchValue),
 
-    initialPageParam: 0,
+      initialPageParam: 0,
 
-    getNextPageParam: (lastPage, allPages) => {
-      if (lastPage.length < LIMIT) {
-        return undefined;
-      }
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage.length < LIMIT) {
+          return undefined;
+        }
 
-      return allPages.length * LIMIT;
-    },
-    select: (data) => data.pages.flatMap((page) => page),
-  });
+        return allPages.length * LIMIT;
+      },
+      select: (data) => data.pages.flatMap((page) => page),
+    }
+  );
 };

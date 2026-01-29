@@ -2,7 +2,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { Tabs } from './types';
 
 import { BottomTabBarData } from './data/bottomTabBar.data';
-import { colors } from '@/theme';
 
 const Tab = createBottomTabNavigator<Tabs>();
 
@@ -11,8 +10,6 @@ export function AppTabs() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.secondary,
         tabBarLabelStyle: {
           fontSize: 12,
           fontFamily: 'SignikaSemiBold',

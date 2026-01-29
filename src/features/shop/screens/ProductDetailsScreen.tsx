@@ -30,15 +30,15 @@ export const ProductDetailsScreen = () => {
             borderRadius: 16,
           }}
         />
-        <View className="flex-row justify-between">
-          <Typography variant="h1" className="mt-4">
+        <View className=" justify-between">
+          <Typography variant="h1" className="text-foreground mt-4">
             {product.title}
           </Typography>
           <Typography variant="h2" className="mt-2 text-green-700">
             ${product.price}
           </Typography>
         </View>
-        <Typography variant="body" className="mt-4 text-gray-700">
+        <Typography variant="body" className="mt-4 text-secondary">
           {product.description}
         </Typography>
       </ScrollView>

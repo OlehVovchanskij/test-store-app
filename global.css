@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --background: 255 255 255;
+  --foreground: 17 24 39;
+
+  --card: 248 250 252;
+  --border: 229 231 235;
+
+  --primary: 37 99 235;
+  --secondary: 75 85 99;
+  --danger: 239 68 68;
+
+  --text-primary: 17 24 39;
+  --text-secondary: 107 114 128;
+  --text-muted: 156 163 175;
+}
+
+.dark {
+  --background: 2 6 15;
+  --foreground: 248 250 252;
+
+  --card: 15 23 42;
+  --border: 30 41 59;
+
+  --primary: 59 130 246;
+  --secondary: 148 163 184;
+  --danger: 248 113 113;
+
+  --text-primary: 248 250 252;
+  --text-secondary: 203 213 225;
+  --text-muted: 100 116 139;
+}

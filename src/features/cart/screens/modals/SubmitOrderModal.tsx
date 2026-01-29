@@ -1,8 +1,7 @@
-import GoBackButton from '@/components/GoBackButton/GoBackButton';
+import Header from '@/components/ui/Header/Header';
 import ThemedView from '@/components/ui/ThemedView/ThemedView';
 import { Typography } from '@/components/ui/Typography/Typography';
-import { colors } from '@/theme';
-import { Keyboard, Pressable, StyleSheet, View } from 'react-native';
+import { Keyboard, Pressable, StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FormCartList from '../../components/CartList/FormCartList';
 import SubmitOrderForm from '../../components/SubmitOrderForm/SubmitOrderForm';
@@ -12,7 +11,7 @@ export const SubmitOrderModal = () => {
   const { totalAmount } = useCartStore();
 
   return (
-    <ThemedView edges={['left', 'right']} className="flex-1 bg-white">
+    <ThemedView edges={['left', 'right']} className="bg-background flex-1">
       <Pressable style={StyleSheet.absoluteFill} onPress={Keyboard.dismiss} />
 
       <KeyboardAwareScrollView
@@ -21,16 +20,15 @@ export const SubmitOrderModal = () => {
         enableResetScrollToCoords={false}
         contentContainerStyle={{ paddingBottom: 80 }}
         showsVerticalScrollIndicator={false}>
-        <View className="mb-6 bg-secondary px-4 pb-6 pt-6">
-          <GoBackButton className="mb-2" textClassName="text-white" color={colors.background} />
-
-          <Typography className="text-2xl font-bold text-white">Submit Order</Typography>
-        </View>
+        <Header text="Submit Order" withBackButton />
 
         <FormCartList />
 
-        <Typography variant="h2" className="mb-2 px-4 text-text-primary">
-          Total ${totalAmount.toFixed(2)}
+        <Typography variant="h2" className="mb-2 px-4 text-secondary">
+          Total:{' '}
+          <Typography variant="h2" className="text-green-700">
+            ${totalAmount.toFixed(2)}
+          </Typography>
         </Typography>
 
         <SubmitOrderForm />

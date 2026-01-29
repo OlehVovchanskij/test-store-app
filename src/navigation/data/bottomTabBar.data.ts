@@ -3,6 +3,7 @@ import { Home, ShoppingCart, User } from 'lucide-react-native';
 import { Tabs } from '../types';
 
 import { CartScreen } from '@/features/cart';
+import { ProfileScreen } from '@/features/profile';
 import { HomeScreen } from '@/features/shop';
 
 interface BottomTabBarItem {
@@ -28,6 +29,6 @@ export const BottomTabBarData: BottomTabBarItem[] = [
     label: 'Profile',
     icon: User,
     name: 'ProfileScreen',
-    screen: HomeScreen,
+    screen: ProfileScreen,
   },
 ];

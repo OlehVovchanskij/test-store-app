@@ -49,11 +49,19 @@ export const useCartStore = create<CartState & CartAction>((set, get) => ({
   setCount: (productId, quantity) => {
     set((state) => {
       const updatedCart = state.items.map((item) =>
-        item.product.id === productId ? { ...item, quantity } : item
+        item.product.id === productId
+          ? {
+              ...item,
+              quantity: Math.max(1, quantity),
+            }
+          : item
       );
+
       return { items: updatedCart };
     });
+
     get().calculateTotal();
+
     AsyncStorage.setItem(SECURESTORAGE_KEYS.CART, JSON.stringify(get().items));
   },
 }));

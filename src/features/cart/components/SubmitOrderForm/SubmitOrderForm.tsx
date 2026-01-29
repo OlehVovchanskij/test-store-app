@@ -37,7 +37,7 @@ export const SubmitOrderForm = () => {
             onChangeText={onChange}
             error={errors.fullName?.message}
             value={value}
-            className="w-full rounded border border-gray-300 p-2"
+            className="w-full rounded border border-border p-2"
             placeholder="Enter your full name"
           />
         )}
@@ -52,7 +52,7 @@ export const SubmitOrderForm = () => {
             onChangeText={onChange}
             value={value}
             error={errors.address?.message}
-            className="w-full rounded border border-gray-300 p-2"
+            className="w-full rounded border border-border p-2"
             placeholder="Enter your address"
           />
         )}
@@ -68,7 +68,7 @@ export const SubmitOrderForm = () => {
             value={value}
             keyboardType="phone-pad"
             error={errors.phoneNumber?.message}
-            className="w-full rounded border border-gray-300 p-2"
+            className="w-full rounded border border-border p-2"
             placeholder="Enter your phone number"
           />
         )}

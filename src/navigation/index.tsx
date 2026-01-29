@@ -6,16 +6,18 @@ import type { RootStackParamList } from './types';
 import { useAuthStore } from '@/features/auth';
 import { SubmitOrderModal, useCartStore } from '@/features/cart';
 import { ProductDetailsScreen } from '@/features/shop/screens/ProductDetailsScreen';
+import { useThemeStore } from '@/store/ThemeStore';
+import { DarkThemeCustom, LightTheme } from '@/theme/navigation.theme';
 import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { AppTabs } from './AppTabs';
 import { AuthStack } from './AuthStack';
-
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function Navigation() {
   const { isAuthenticated, fetchMe, isLoading } = useAuthStore();
   const { setCartItems } = useCartStore();
+  const { theme } = useThemeStore();
   useEffect(() => {
     setCartItems();
     fetchMe();
@@ -28,7 +30,7 @@ export function Navigation() {
     );
   }
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme === 'dark' ? DarkThemeCustom : LightTheme}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isAuthenticated ? (
           <>

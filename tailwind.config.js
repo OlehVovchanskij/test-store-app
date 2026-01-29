@@ -3,19 +3,23 @@ module.exports = {
   content: ['./src/App.{js,ts,tsx}', './src/**/*.{js,ts,tsx}'],
 
   presets: [require('nativewind/preset')],
+  darkMode: 'class',
+
   theme: {
     extend: {
       colors: {
-        primary: '#2563EB',
-        secondary: '#4B5563',
-        danger: '#EF4444',
-        border: '#E5E7EB',
+        background: 'rgb(var(--background))',
+        foreground: 'rgb(var(--foreground))',
+        card: 'rgb(var(--card))',
+        border: 'rgb(var(--border))',
 
-        text: {
-          primary: '#111827',
-          secondary: '#6B7280',
-          muted: '#9CA3AF',
-        },
+        primary: 'rgb(var(--primary))',
+        secondary: 'rgb(var(--secondary))',
+        danger: 'rgb(var(--danger))',
+
+        textPrimary: 'rgb(var(--text-primary))',
+        textSecondary: 'rgb(var(--text-secondary))',
+        textMuted: 'rgb(var(--text-muted))',
       },
 
       fontFamily: {
@@ -27,5 +31,6 @@ module.exports = {
       },
     },
   },
+
   plugins: [],
 };
