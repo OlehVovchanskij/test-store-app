@@ -21,13 +21,13 @@ export const HomeScreen = () => {
       </Header>
       <View className="flex-1">
         <View className="w-full">
-          <Typography variant="h2" className="mt-6 px-4">
+          <Typography variant="h2" className="mt-6 px-4 text-secondary">
             Categories
           </Typography>
           <CategoriesList />
         </View>
         <View className="flex-1 px-4">
-          <Typography variant="h2" className="mt-6">
+          <Typography variant="h2" className="mt-6 text-secondary">
             Products
           </Typography>
           <ProductsList search={search} />

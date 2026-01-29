@@ -6,7 +6,7 @@ import CartItem from '../CartItem/CartItem';
 const FormCartList = () => {
   const { items } = useCartStore();
   return (
-    <View className="mb-2 bg-white">
+    <View className="bg-background mb-2 w-full py-2">
       {items.length === 0 && (
         <View className="flex-1 items-center justify-center ">
           <View className="text-center">
@@ -17,7 +17,7 @@ const FormCartList = () => {
         </View>
       )}
       {items.length > 0 && (
-        <Typography variant="h3" className="mb-1 px-4 text-lg font-medium text-text-primary">
+        <Typography variant="h3" className="mb-1 px-4 text-lg font-medium text-primary">
           Review your order before submitting.
         </Typography>
       )}

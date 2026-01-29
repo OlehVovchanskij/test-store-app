@@ -11,13 +11,15 @@ export function CartScreen() {
   const { totalAmount } = useCartStore();
   const navigation = useAppNavigation();
   return (
-    <ThemedView edges={['left', 'right']} className="bg-white">
+    <ThemedView edges={['left', 'right']} className="bg-background">
       <Header text="Your Cart" />
-      <View className="flex-1">
+      <View className=" flex-1">
         <CartList />
       </View>
-      <View className="w-full flex-row  items-center justify-between rounded-t-3xl border-t-2 border-gray-200 bg-secondary/10  p-4">
-        <Typography variant="h2">Total: ${totalAmount.toFixed(2)}</Typography>
+      <View className="w-full flex-row items-center  justify-between rounded-t-3xl border-2 border-b-0 border-secondary bg-secondary/20  p-4">
+        <Typography variant="h2" className="text-secondary">
+          Total: ${totalAmount.toFixed(2)}
+        </Typography>
         <Button
           size="md"
           variant="primary"

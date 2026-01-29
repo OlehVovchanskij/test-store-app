@@ -11,7 +11,7 @@ export const SubmitOrderModal = () => {
   const { totalAmount } = useCartStore();
 
   return (
-    <ThemedView edges={['left', 'right']} className="flex-1 bg-white">
+    <ThemedView edges={['left', 'right']} className="bg-background flex-1">
       <Pressable style={StyleSheet.absoluteFill} onPress={Keyboard.dismiss} />
 
       <KeyboardAwareScrollView
@@ -24,8 +24,11 @@ export const SubmitOrderModal = () => {
 
         <FormCartList />
 
-        <Typography variant="h2" className="mb-2 px-4 text-text-primary">
-          Total ${totalAmount.toFixed(2)}
+        <Typography variant="h2" className="mb-2 px-4 text-secondary">
+          Total:{' '}
+          <Typography variant="h2" className="text-green-700">
+            ${totalAmount.toFixed(2)}
+          </Typography>
         </Typography>
 
         <SubmitOrderForm />

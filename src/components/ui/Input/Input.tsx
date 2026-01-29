@@ -18,11 +18,11 @@ export function Input({ label, error, className, ...props }: InputProps) {
 
       <TextInput
         {...props}
-        placeholderTextColor="#9CA3AF"
+        placeholderTextColor="#333333"
         textAlignVertical="center"
         className={cn(
           ' rounded-xl border px-4 py-3 text-base leading-[0px]  text-text-primary',
-          'border-border bg-white',
+          'border-border bg-white/60',
           error && 'border-danger',
           className
         )}

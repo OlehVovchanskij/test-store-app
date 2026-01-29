@@ -1,4 +1,5 @@
 import { Navigation } from '@/navigation';
+import ThemeProvider from '@/providers/ThemeProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
@@ -37,7 +38,9 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaProvider>
-          <Navigation />
+          <ThemeProvider>
+            <Navigation />
+          </ThemeProvider>
         </SafeAreaProvider>
       </GestureHandlerRootView>
     </QueryClientProvider>

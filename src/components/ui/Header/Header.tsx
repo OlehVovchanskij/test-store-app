@@ -8,7 +8,7 @@ interface HeaderProps extends PropsWithChildren {
 }
 const Header = ({ text, children, withBackButton }: HeaderProps) => {
   return (
-    <View className="bg-secondary px-4 pb-6 pt-12">
+    <View className="bg-secondary/30 px-4 pb-6 pt-12">
       {withBackButton && <GoBackButton className="mb-2" textClassName="text-white" color="white" />}
       <Typography variant="h1" className="text-white">
         {text}
