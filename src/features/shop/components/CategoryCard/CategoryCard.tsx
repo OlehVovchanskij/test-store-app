@@ -7,9 +7,15 @@ import { useShopStore } from '../../store/shopStore';
 import { Category } from '../../types/category.types';
 const CategoryCard = ({ category }: { category: Category }) => {
   const { setCategoryFilter, categoryFilter } = useShopStore();
+  const sliceName = (name: string) => {
+    if (name.length > 10) {
+      return name.slice(0, 10) + '...';
+    }
+    return name;
+  };
   return (
     <Pressable
-      className={cn(' mr-4 flex-1 items-center justify-center', {
+      className={cn(' mr-4 max-w-20 flex-1 items-center justify-center', {
         'opacity-100': categoryFilter === category.id,
         'opacity-60': categoryFilter !== category.id,
       })}
@@ -29,7 +35,7 @@ const CategoryCard = ({ category }: { category: Category }) => {
           },
           'font-signika-semibold'
         )}>
-        {category.name}
+        {sliceName(category.name)}
       </Typography>
     </Pressable>
   );

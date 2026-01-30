@@ -3,6 +3,7 @@
     "name": "test-store-app",
     "slug": "test-store-app",
     "version": "1.0.0",
+    "scheme": "test-store-app",
     "web": {
       "favicon": "./assets/favicon.png"
     },

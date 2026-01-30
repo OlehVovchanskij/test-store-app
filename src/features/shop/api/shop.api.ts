@@ -19,6 +19,13 @@ export const getProducts = async (
 
   return data;
 };
+
+export const getProductById = async (productId: number): Promise<Product> => {
+  const { data } = await storeApi.get<Product>(`/products/${productId}`);
+
+  return data;
+};
+
 export const getCategories = async (): Promise<Category[]> => {
   const { data } = await storeApi.get('/categories');
   return data;

@@ -1,7 +1,7 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useShopStore } from '../../store/shopStore';
 import { Product } from '../../types/product.types';
-import { getProducts } from '../shop.api';
+import { getProductById, getProducts } from '../shop.api';
 
 const LIMIT = 20;
 
@@ -26,4 +26,12 @@ export const useProducts = (searchValue: string) => {
       select: (data) => data.pages.flatMap((page) => page),
     }
   );
+};
+export const useProductById = (productId: number) => {
+  return useQuery({
+    queryKey: ['product', productId],
+    queryFn: async () => {
+      return await getProductById(productId);
+    },
+  });
 };
