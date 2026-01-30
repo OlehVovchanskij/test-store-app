@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { AppTabs } from './AppTabs';
 import { AuthStack } from './AuthStack';
+import { linking } from './Linking';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function Navigation() {
@@ -29,8 +30,9 @@ export function Navigation() {
       </View>
     );
   }
+
   return (
-    <NavigationContainer theme={theme === 'dark' ? DarkThemeCustom : LightTheme}>
+    <NavigationContainer theme={theme === 'dark' ? DarkThemeCustom : LightTheme} linking={linking}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isAuthenticated ? (
           <>

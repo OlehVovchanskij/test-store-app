@@ -21,8 +21,8 @@ export const ProductCard = ({ product }: { product: Product }) => {
         scale.value = withSpring(1);
       }}
       style={animatedStyle}
-      onPress={() => navigation.navigate('ProductDetails', { product: product })}
-      className="bg-card mb-5 w-[48%] rounded-2xl border-[1px] border-border p-3">
+      onPress={() => navigation.navigate('ProductDetails', { productId: product.id })}
+      className="mb-5 w-[48%] rounded-2xl border-[1px] border-border bg-card p-3">
       <Image
         source={{ uri: product.images[0] }}
         placeholder={BLURHASH}

@@ -1,5 +1,3 @@
-import { Product } from '@/features/shop';
-
 export type AuthStackParamList = {
   LoginScreen: undefined;
 };
@@ -14,5 +12,5 @@ export type RootStackParamList = {
   Auth: undefined;
   App: undefined;
   SubmitOrder: undefined;
-  ProductDetails: { product: Product };
+  ProductDetails: { productId: number };
 };
